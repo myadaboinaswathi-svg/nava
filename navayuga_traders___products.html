@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Premium Products | Navayuga Traders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "%VITE_SUPABASE_URL%";
+  const supabaseKey = "%VITE_SUPABASE_ANON_KEY%";
+  window.supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+  console.log("Navayuga Traders Products Page - Supabase Client Init:", window.supabaseClient);
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#0c5216",
+                    "outline-variant": "#bfcaba",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002203",
+                    "on-surface": "#2b160f",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#005312",
+                    "surface-container-low": "#fff1ec",
+                    "tertiary-container": "#986200",
+                    "primary-container": "#2e7d32",
+                    "on-tertiary-fixed": "#2a1800",
+                    "background": "#fff8f6",
+                    "tertiary-fixed-dim": "#ffb957",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#ffe9e2",
+                    "secondary-container": "#acf4a4",
+                    "surface-container-high": "#ffe2d9",
+                    "on-secondary-container": "#307231",
+                    "inverse-on-surface": "#ffede7",
+                    "inverse-primary": "#88d982",
+                    "tertiary": "#774c00",
+                    "secondary-fixed": "#acf4a4",
+                    "on-surface-variant": "#40493d",
+                    "primary-fixed": "#a3f69c",
+                    "on-error": "#ffffff",
+                    "on-background": "#2b160f",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002204",
+                    "surface-container-highest": "#ffdbce",
+                    "on-tertiary-container": "#ffeede",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#88d982",
+                    "surface": "#fff8f6",
+                    "tertiary-fixed": "#ffddb5",
+                    "outline": "#707a6c",
+                    "surface-variant": "#ffdbce",
+                    "secondary": "#2a6b2c",
+                    "secondary-fixed-dim": "#91d78a",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#422b22",
+                    "on-tertiary-fixed-variant": "#643f00",
+                    "surface-tint": "#1b6d24",
+                    "primary": "#0d631b",
+                    "surface-dim": "#f8d2c4",
+                    "on-primary-container": "#cbffc2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .card-shadow {
+            box-shadow: 0 8px 24px -4px rgba(42, 107, 44, 0.08);
+        }
+        .card-shadow:hover {
+            box-shadow: 0 12px 32px -4px rgba(42, 107, 44, 0.12);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Origin Warning Banner -->
+<div id="origin-warning-banner" class="hidden bg-amber-600 text-white px-4 py-3 text-center text-sm font-semibold relative z-[300] shadow-md transition-all duration-300">
+  <div class="max-w-container-max mx-auto flex items-center justify-center gap-2 flex-wrap">
+    <span class="material-symbols-outlined text-lg">warning</span>
+    <span>Opened via File Protocol (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">file://</code>). Data sharing (adding products, inquiry submissions) between the Admin Portal and the live site will NOT work because browsers isolate file origins.</span>
+    <span class="opacity-95">Please run the local server (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">npm run dev</code>) and open the site via <a href="http://localhost:5173" class="underline hover:text-amber-200">http://localhost:5173</a> instead.</span>
+  </div>
+</div>
+<!-- Top AppBar (Mobile Optimized) -->
+
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-sm h-20 flex items-center px-4">
+  <div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex items-center gap-6">
+      <button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high md:hidden" id="open-drawer-btn">
+        <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+      </button>
+      <a href="index.html" class="flex items-center gap-3">
+        <h1 class="font-display-lg text-title-md md:text-headline-lg font-bold text-primary">Navayuga Traders</h1>
+      </a>
+    </div>
+    
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Home</a>
+      <a href="navayuga_traders___products.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Products</a>
+      <a href="navayuga_traders___for_farmers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Farmers</a>
+      <a href="navayuga_traders___for_buyers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Buyers</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="navayuga_traders___for_buyers.html#quote" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-300 shadow-md">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Drawer (Side Menu Implementation) -->
+<div class="fixed inset-0 z-[100] pointer-events-none" id="side-drawer">
+  <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300" id="drawer-overlay"></div>
+  <aside class="absolute top-0 left-0 h-full w-80 bg-surface shadow-xl -translate-x-full transition-transform duration-300 pointer-events-auto rounded-r-xl p-6" id="drawer-content">
+    <div class="flex items-center justify-between mb-8">
+      <span class="font-display-lg text-title-md font-bold text-primary">Menu</span>
+      <button class="p-2 rounded-full hover:bg-surface-container-high" id="close-drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2">
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="font-title-md">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___products.html">
+        <span class="material-symbols-outlined">storefront</span>
+        <span class="font-title-md">Products</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_farmers.html">
+        <span class="material-symbols-outlined">agriculture</span>
+        <span class="font-title-md">For Farmers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_buyers.html">
+        <span class="material-symbols-outlined">business</span>
+        <span class="font-title-md">For Buyers</span>
+      </a>
+    </nav>
+  </aside>
+</div>
+
+<main class="pt-24 pb-32 px-5 max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-6">Our Premium Products</h1>
+<!-- Search Bar -->
+<div class="relative mb-6 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input id="search-input" class="w-full pl-12 pr-4 py-4 rounded-xl border-none bg-surface-container-low focus:ring-2 focus:ring-primary transition-all font-body-md shadow-sm" placeholder="Search for grains, spices, or seeds..." type="text"/>
+</div>
+<!-- Category Filter (Horizontal Scroll) -->
+<div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+<button data-filter="all" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary text-on-primary font-label-md">All</button>
+<button data-filter="grains" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Grains</button>
+<button data-filter="pulses" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Pulses</button>
+<button data-filter="seeds" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Seeds</button>
+<button data-filter="spices" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Spices</button>
+<button data-filter="oil seeds" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Oil Seeds</button>
+<button data-filter="vegetables" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Vegetables</button>
+<button data-filter="fruits" class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors">Fruits</button>
+</div>
+</section>
+<!-- Product Grid -->
+<section id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div data-category="grains" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group">
+<div class="relative h-56 overflow-hidden">
+<img alt="Premium Basmati Rice" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A macro shot of long-grain premium basmati rice grains held in a rustic burlap sack under warm, golden sunlight. The setting is a clean, modern warehouse with soft focus in the background. The lighting highlights the pearly texture and ivory color of the rice, embodying a sense of high-quality agricultural yield and organic purity in a modern agrarian style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtyKVDAWw0Jl4F9XPqNsTwUse84SB4HKnywKqHIS0ghFdn-k0zrUK6jhgGDRMs5xjmELfzhsO4qzTxECV6O4rgrKXovPFWC_J7eywScOeVOXP7hnTMzYuF7cLS2QwByBoZyS3Fu1YFGJKGS_P9Kwi-QeFOcIQ5HwZ6R5OQXLuRxmkHrl2gv6h5R4_EuPUmkG2WURhtfgY6jLGMpg3z__GvIB5KZBwC5mvxA17wzMte3nMQTyVsgSMm-A"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-secondary-container font-label-sm uppercase tracking-wider">In Stock</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Grains</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Premium Long-Grain Basmati</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Freshly harvested premium grade rice, aged naturally for superior aroma and non-sticky texture.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=grains#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2 group-active:scale-95">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div data-category="spices" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group">
+<div class="relative h-56 overflow-hidden">
+<img alt="Organic Turmeric Powder" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vibrant, deep orange turmeric powder arranged in a perfectly symmetrical pyramid on a dark slate surface. Soft, high-key studio lighting emphasizes the fine, powdery texture and intense pigment. The scene is minimal and sophisticated, using a clean color palette of earthy oranges and cool greys to communicate reliability and professional agricultural trading standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3TKwKe5A1UOlkSHp96VK1jMeh0jpGhHk8FhfQJOIbsMQq4aa0sfo3s3ZZbnxsXVepF9LcBi-swC1pssjf6Om7sZQFVL3nor3kyxfUiPBfzmCT6DSXfYvWcsXwjRp75Xb06RAIH12wOJkaibrqRgkbz8xHWcpWQ-S_77D6wIG31Vl8NsyGNA_fWC_IKJUr0Zxx0hpVsmGIuXswWWknTIqrbK_XacChaNwobfS_LUJfySRXPlkj7ect9w"/>
+<div class="absolute top-4 left-4 bg-primary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-primary-container font-label-sm uppercase tracking-wider">Export Grade</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Spices</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Organic Curcumin Turmeric</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Sun-dried and stone-ground turmeric with high curcumin content, sourced directly from certified farms.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=spices#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div data-category="pulses" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group">
+<div class="relative h-56 overflow-hidden">
+<img alt="Green Mung Beans" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A close-up photograph of polished green mung beans overflowing from a modern glass container. The background is a bright, airy kitchen space with soft-focus greenery. High-end lighting creates sharp highlights on the smooth bean surfaces, emphasizing freshness and vitality. The overall aesthetic is clean, nature-inspired, and premium, following the modern agrarian design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC10junp9weQPAn2_6uoYA9N0AKrqORpsLYdJEcik3PkS58iJrZuaXtY4NYrbYQQyilY6o7t5_Vn8H2yXoQFEDrR29qLiO-hHlp_ftzDWuC9-j4F62BaIVu-ImjVC3KyVdTkGE56jbxE0IinSMXHEGc1hUIjYsmQcOFgmwHHIqIW_QM6m9pmC78lvExq-p-SXMzas8Pe8mRxVtyfyO6p9LH29KgOVMgWohGm7rkJ1inMn4ssKzI5hZ_Vw"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-secondary-container font-label-sm uppercase tracking-wider">In Stock</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Pulses</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Whole Polished Mung Beans</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Premium quality pulses, double-cleaned and graded for uniform size and maximum nutritional value.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=pulses#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Product Card 4 (Hidden by default) -->
+<div data-category="seeds" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group hidden mock-more-product">
+<div class="relative h-56 overflow-hidden">
+<img alt="Sunflower Seeds" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKmn6dr5X0_s6gJFrHAtlFYr8Vf9otkZBvhAEtVnGpwbK65rRfCOvji5T2YNAGLaF9lcL8XGn03zcEwsb9Zks0AsYm79L7spykppxM1oQyL9x_KgsygS4MbOqolRaOZvPP5jYlxnlSFDiRzwBfYmbzVV1mHgzgWiae7fygGwYDn_OvMUSJ9i2iIupTMQ4GEbrmalY-sryIMJRcHko-Jn3Pr-0WtdQm7ggmKzZ_Tz-rRr7zxZTbrUISwg"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-secondary-container font-label-sm uppercase tracking-wider">In Stock</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Seeds</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Hybrid Sunflower Seeds</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">High oil-yielding hybrid seeds treated for resistance to common pests and high germination rate.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=seeds#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Product Card 5 (Hidden by default) -->
+<div data-category="oil seeds" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group hidden mock-more-product">
+<div class="relative h-56 overflow-hidden">
+<img alt="Groundnut Seeds" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeXtBEmZbRt1bpJvIs4m42Opq0_oz6HwEj9Qo5yhh_mC_IEmF1v5qXkWAeFBks_Dls3lqGWdj4meCG5ZaCLeMOLBMLUHlA-dsj8Ni85fJAgJ0g3OTQ_8CEkxT8DJCnTz5XAqPE0iv8XPHihceiSfsWc7OqnWZh6YHTef9bCiM91MPtsE7QrJqEAkYscX8q4XbjdhY2zZtZXx2M_AfcwtFuyvJGfd971eMqykVvCzRlQAe883HpnZyEDg"/>
+<div class="absolute top-4 left-4 bg-primary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-primary-container font-label-sm uppercase tracking-wider">Premium</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Oil Seeds</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Selected Groundnut Kernels</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Bold groundnut kernels cleaned and dried, perfect for oil extraction and premium wholesaling.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=seeds#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Product Card 6 (Hidden by default) -->
+<div data-category="vegetables" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group hidden mock-more-product">
+<div class="relative h-56 overflow-hidden">
+<img alt="Fresh Tomatoes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhFsdqf-Ytu8uingAst5T10uBu6MAUclHsLZHAYreKuKhmcYq7rS3ieyy1tVKHjjQJkSFUgUSIdSX4CMKNmneidrC4sGWwoa_k7-fpOdRIH_DbwqHDfJ89eRK-kjzCv0uja7mf9Xh7z49wMbMzceBYtf4r-UujJfWMr5Fx97YtzAdNclyTSq8vqHWL_4llUJyH9tVwQWoybz1sOavQDQ-lnz0GEZR9RtjYcLFTHNN86_77gSc-YrTtNQ"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-secondary-container font-label-sm uppercase tracking-wider">Fresh</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">Vegetables</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Farm Fresh Red Tomatoes</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Directly sourced mature tomatoes, graded and packaged in protective crates for local distribution.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=vegetables#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Pagination -->
+<div class="mt-12 flex flex-col items-center gap-4">
+<button id="load-more-btn" class="w-full max-w-[200px] py-4 rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-secondary-container transition-colors flex items-center justify-center gap-2 group">
+                Load More
+                <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform">expand_more</span>
+</button>
+<span id="product-count" class="font-label-sm text-outline">Showing 3 of 42 products</span>
+</div>
+</main>
+<!-- Footer (Mobile View) -->
+<footer class="bg-surface-container-highest w-full py-12 px-5 pb-24">
+<div class="flex flex-col gap-8">
+<div>
+<span class="font-display-lg text-display-lg font-bold text-primary">Navayuga Traders</span>
+<p class="font-body-md text-on-surface-variant mt-4">Connecting global markets with the purest agricultural produce from the heart of the earth.</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-primary font-bold">Quick Links</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Products</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Services</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-primary font-bold">Suppliers</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Become a Supplier</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Quality Standards</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary" href="#">Logistics</a>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant">
+<p class="font-label-sm text-on-surface-variant opacity-70">© 2024 Navayuga Traders. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 w-full bg-surface/80 backdrop-blur-xl md:hidden z-50 px-6 py-4 flex justify-between items-center shadow-[0_-4px_24px_-4px_rgba(0,0,0,0.1)] border-t border-outline-variant/30">
+  <a href="index.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm mt-1">Home</span>
+  </a>
+  <a href="navayuga_traders___products.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">storefront</span>
+    <span class="text-[10px] font-label-sm mt-1">Products</span>
+  </a>
+  <a href="navayuga_traders___for_farmers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">agriculture</span>
+    <span class="text-[10px] font-label-sm mt-1">Farmers</span>
+  </a>
+  <a href="navayuga_traders___for_buyers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">business</span>
+    <span class="text-[10px] font-label-sm mt-1">Buyers</span>
+  </a>
+</nav>
+
+<!-- Bottom Navigation (Mobile Only Shell) -->
+
+<script>
+        const db = window.supabaseClient;
+        // Interactive Filtering, Search, and Load More Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultProducts = [
+                {
+                    id: 1,
+                    title: 'Premium Long-Grain Basmati',
+                    category: 'Grains',
+                    desc: 'Freshly harvested premium grade rice, aged naturally for superior aroma and non-sticky texture.',
+                    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCtyKVDAWw0Jl4F9XPqNsTwUse84SB4HKnywKqHIS0ghFdn-k0zrUK6jhgGDRMs5xjmELfzhsO4qzTxECV6O4rgrKXovPFWC_J7eywScOeVOXP7hnTMzYuF7cLS2QwByBoZyS3Fu1YFGJKGS_P9Kwi-QeFOcIQ5HwZ6R5OQXLuRxmkHrl2gv6h5R4_EuPUmkG2WURhtfgY6jLGMpg3z__GvIB5KZBwC5mvxA17wzMte3nMQTyVsgSMm-A',
+                    tag: 'In Stock'
+                },
+                {
+                    id: 2,
+                    title: 'Organic Curcumin Turmeric',
+                    category: 'Spices',
+                    desc: 'Sun-dried and stone-ground turmeric with high curcumin content, sourced directly from certified farms.',
+                    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3TKwKe5A1UOlkSHp96VK1jMeh0jpGhHk8FhfQJOIbsMQq4aa0sfo3s3ZZbnxsXVepF9LcBi-swC1pssjf6Om7sZQFVL3nor3kyxfUiPBfzmCT6DSXfYvWcsXwjRp75Xb06RAIH12wOJkaibrqRgkbz8xHWcpWQ-S_77D6wIG31Vl8NsyGNA_fWC_IKJUr0Zxx0hpVsmGIuXswWWknTIqrbK_XacChaNwobfS_LUJfySRXPlkj7ect9w',
+                    tag: 'Export Grade'
+                },
+                {
+                    id: 3,
+                    title: 'Whole Polished Mung Beans',
+                    category: 'Pulses',
+                    desc: 'Premium quality pulses, double-cleaned and graded for uniform size and maximum nutritional value.',
+                    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC10junp9weQPAn2_6uoYA9N0AKrqORpsLYdJEcik3PkS58iJrZuaXtY4NYrbYQQyilY6o7t5_Vn8H2yXoQFEDrR29qLiO-hHlp_ftzDWuC9-j4F62BaIVu-ImjVC3KyVdTkGE56jbxE0IinSMXHEGc1hUIjYsmQcOFgmwHHIqIW_QM6m9pmC78lvExq-p-SXMzas8Pe8mRxVtyfyO6p9LH29KgOVMgWohGm7rkJ1inMn4ssKzI5hZ_Vw',
+                    tag: 'In Stock'
+                },
+                {
+                    id: 4,
+                    title: 'Hybrid Sunflower Seeds',
+                    category: 'Seeds',
+                    desc: 'High oil-yielding hybrid seeds treated for resistance to common pests and high germination rate.',
+                    img: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80',
+                    tag: 'In Stock',
+                    isMock: true
+                },
+                {
+                    id: 5,
+                    title: 'Selected Groundnut Kernels',
+                    category: 'Oil Seeds',
+                    desc: 'Bold groundnut kernels cleaned and dried, perfect for oil extraction and premium wholesaling.',
+                    img: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=600&q=80',
+                    tag: 'Premium',
+                    isMock: true
+                },
+                {
+                    id: 6,
+                    title: 'Farm Fresh Red Tomatoes',
+                    category: 'Vegetables',
+                    desc: 'Directly sourced mature tomatoes, graded and packaged in protective crates for local distribution.',
+                    img: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80',
+                    tag: 'Fresh',
+                    isMock: true
+                },
+                {
+                    id: 7,
+                    title: 'Green Cardamom Pods',
+                    category: 'Spices',
+                    desc: 'Bold green cardamom capsules, rich in essential oils, handpicked from the hills of Kerala.',
+                    img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
+                    tag: 'Export Grade'
+                },
+                {
+                    id: 8,
+                    title: 'Premium Red Lentils (Masoor)',
+                    category: 'Pulses',
+                    desc: 'High-protein split red lentils, machine-cleaned and polished to perfection.',
+                    img: 'https://images.unsplash.com/photo-1547849650-e722d61166b1?auto=format&fit=crop&w=600&q=80',
+                    tag: 'In Stock'
+                },
+                {
+                    id: 9,
+                    title: 'Organic Black Mustard Seeds',
+                    category: 'Seeds',
+                    desc: 'Naturally grown black mustard seeds, high in oil content, directly procured from Rajasthan growers.',
+                    img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+                    tag: 'In Stock'
+                },
+                {
+                    id: 10,
+                    title: 'Ratnagiri Alphonso Mangoes',
+                    category: 'Fruits',
+                    desc: 'King of Mangoes, hand-picked from Ratnagiri farms, naturally ripened and sweet.',
+                    img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80',
+                    tag: 'Seasonal'
+                },
+                {
+                    id: 11,
+                    title: 'Fresh Nasik Red Onions',
+                    category: 'Vegetables',
+                    desc: 'Farm-fresh Nasik red onions, double-skin graded for excellent shelf-life and size.',
+                    img: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=600&q=80',
+                    tag: 'In Stock'
+                }
+            ];
+
+            // Load products from Supabase
+            async function loadProductsFromSupabase() {
+                let productsList = [];
+                try {
+                    const { data, error } = await db
+                        .from('nt_products')
+                        .select('*')
+                        .order('id', { ascending: true });
+
+                    if (error) {
+                        console.error("Error fetching products from Supabase, using defaults:", error);
+                        productsList = defaultProducts;
+                    } else if (!data || data.length === 0) {
+                        // Seed database with defaults if it's empty (just as a helper)
+                        console.log("Supabase products table is empty. Seeding with defaults...");
+                        const seedData = defaultProducts.map(({ title, category, desc, img, tag, isMock, loaded }) => ({
+                            title,
+                            category,
+                            desc_text: desc,
+                            img,
+                            tag,
+                            is_mock: isMock || false,
+                            loaded: loaded || false
+                        }));
+                        const { data: inserted, error: insertError } = await db
+                            .from('nt_products')
+                            .insert(seedData)
+                            .select();
+                        if (insertError) {
+                            console.error("Error seeding defaults:", insertError);
+                            productsList = defaultProducts;
+                        } else {
+                            productsList = inserted;
+                        }
+                    } else {
+                        productsList = data;
+                    }
+                } catch (err) {
+                    console.error("Supabase request failed, falling back to local defaults:", err);
+                    productsList = defaultProducts;
+                }
+
+                const grid = document.getElementById('products-grid');
+                if (grid) {
+                    grid.innerHTML = productsList.map(product => `
+<div data-id="${product.id}" data-category="${product.category.toLowerCase()}" class="product-card bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant/30 group ${(product.is_mock || product.isMock) && product.loaded !== true ? 'hidden mock-more-product' : ''}" ${product.loaded === true ? 'data-loaded="true"' : ''}>
+<div class="relative h-56 overflow-hidden">
+<img alt="${product.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="${product.img || 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=600&q=80'}"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-lg">
+<span class="text-on-secondary-container font-label-sm uppercase tracking-wider">${product.tag || 'In Stock'}</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-tertiary font-label-sm uppercase">${product.category}</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-error transition-colors favorite-heart">favorite</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">${product.title}</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">${product.desc_text || product.desc}</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html?product=${product.category}#quote'" class="w-full py-4 rounded-xl border-[1.5px] border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                        Request Quote
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+                    `).join('');
+                }
+
+                setupInteractions();
+            }
+
+            function setupInteractions() {
+                const filterButtons = document.querySelectorAll('.overflow-x-auto button');
+                const searchInput = document.getElementById('search-input');
+                const cards = document.querySelectorAll('.product-card');
+                const loadMoreBtn = document.getElementById('load-more-btn');
+                const countText = document.getElementById('product-count');
+                const hearts = document.querySelectorAll('.favorite-heart');
+
+                let activeCategory = 'all';
+                let searchQuery = '';
+
+                function filterProducts() {
+                    let visibleCount = 0;
+                    let totalInCategory = 0;
+
+                    cards.forEach(card => {
+                        const cat = card.getAttribute('data-category');
+                        const isMock = card.classList.contains('mock-more-product');
+                        const matchesCategory = (activeCategory === 'all' || cat === activeCategory);
+                        
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        const desc = card.querySelector('p').textContent.toLowerCase();
+                        const matchesSearch = title.includes(searchQuery) || desc.includes(searchQuery);
+
+                        if (matchesCategory && matchesSearch) {
+                            totalInCategory++;
+                            if (!isMock || card.getAttribute('data-loaded') === 'true') {
+                                card.classList.remove('hidden');
+                                visibleCount++;
+                            } else {
+                                card.classList.add('hidden');
+                            }
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                    countText.textContent = `Showing ${visibleCount} of ${totalInCategory} products`;
+
+                    const hasHiddenMocks = Array.from(cards).some(card => 
+                        card.classList.contains('mock-more-product') && 
+                        card.getAttribute('data-category') === activeCategory &&
+                        card.getAttribute('data-loaded') !== 'true'
+                    ) || (activeCategory === 'all' && Array.from(cards).some(card => 
+                        card.classList.contains('mock-more-product') && 
+                        card.getAttribute('data-loaded') !== 'true'
+                    ));
+
+                    if (hasHiddenMocks) {
+                        loadMoreBtn.classList.remove('hidden');
+                    } else {
+                        loadMoreBtn.classList.add('hidden');
+                    }
+                }
+
+                filterButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        filterButtons.forEach(b => {
+                            b.classList.remove('bg-primary', 'text-on-primary');
+                            b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                        });
+                        btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                        btn.classList.add('bg-primary', 'text-on-primary');
+
+                        activeCategory = btn.getAttribute('data-filter');
+                        filterProducts();
+                    });
+                });
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        searchQuery = e.target.value.toLowerCase().trim();
+                        filterProducts();
+                    });
+                }
+
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', async () => {
+                        const cardIdsToLoad = [];
+                        cards.forEach(card => {
+                            if (card.classList.contains('mock-more-product') && card.classList.contains('hidden')) {
+                                const cat = card.getAttribute('data-category');
+                                if (activeCategory === 'all' || cat === activeCategory) {
+                                    card.setAttribute('data-loaded', 'true');
+                                    card.classList.remove('hidden');
+                                    cardIdsToLoad.push(parseInt(card.getAttribute('data-id')));
+                                }
+                            }
+                        });
+
+                        if (cardIdsToLoad.length > 0) {
+                            try {
+                                const { error } = await db
+                                    .from('nt_products')
+                                    .update({ loaded: true })
+                                    .in('id', cardIdsToLoad);
+                                if (error) console.error("Error updating loaded status in Supabase:", error);
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }
+                        
+                        filterProducts();
+                    });
+                }
+
+                hearts.forEach(heart => {
+                    heart.addEventListener('click', () => {
+                        const isFilled = heart.style.fontVariationSettings && heart.style.fontVariationSettings.includes("'FILL' 1");
+                        if (isFilled) {
+                            heart.style.fontVariationSettings = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+                            heart.classList.remove('text-error');
+                            heart.classList.add('text-outline');
+                        } else {
+                            heart.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+                            heart.classList.remove('text-outline');
+                            heart.classList.add('text-error');
+                        }
+                    });
+                });
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryParam = urlParams.get('category');
+                if (categoryParam) {
+                    const targetBtn = Array.from(filterButtons).find(btn => 
+                        btn.getAttribute('data-filter') === categoryParam.toLowerCase()
+                    );
+                    if (targetBtn) {
+                        targetBtn.click();
+                    } else {
+                        filterProducts();
+                    }
+                } else {
+                    filterProducts();
+                }
+
+                const observerOptions = { threshold: 0.1 };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('translate-y-0', 'opacity-100');
+                            entry.target.classList.remove('translate-y-10', 'opacity-0');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.card-shadow').forEach(card => {
+                    card.classList.add('transition-all', 'duration-700', 'translate-y-10', 'opacity-0');
+                    observer.observe(card);
+                });
+            }
+
+            loadProductsFromSupabase();
+        });
+    </script>
+
+<script>
+  // Highlight active page in navigation
+  (function() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+      }
+    });
+    document.querySelectorAll('.nav-bottom-item').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold');
+      }
+    });
+
+    // Drawer toggle logic
+    const openDrawerBtn = document.getElementById('open-drawer-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer');
+    const drawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const content = document.getElementById('drawer-content');
+
+    if (openDrawerBtn && drawer && overlay && content && closeDrawerBtn) {
+      function toggleDrawer(open) {
+        if (open) {
+          drawer.classList.remove('pointer-events-none');
+          overlay.classList.add('opacity-100');
+          content.classList.remove('-translate-x-full');
+        } else {
+          drawer.classList.add('pointer-events-none');
+          overlay.classList.remove('opacity-100');
+          content.classList.add('-translate-x-full');
+        }
+      }
+
+      openDrawerBtn.addEventListener('click', () => toggleDrawer(true));
+      closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+      overlay.addEventListener('click', () => toggleDrawer(false));
+    }
+  })();
+
+  // File protocol check warning banner
+  if (window.location.protocol === 'file:') {
+    const banner = document.getElementById('origin-warning-banner');
+    if (banner) banner.classList.remove('hidden');
+  }
+</script>
+</body></html>

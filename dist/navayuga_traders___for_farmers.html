@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>For Farmers | Navayuga Traders</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "https://fzmffzyniungeuteuvfr.supabase.co";
+  const supabaseKey = "sb_publishable_odeDLjODnToRRo6pAw63zA_AzA22WT3";
+  window.supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+  console.log("Navayuga Traders Farmers Page - Supabase Client Init:", window.supabaseClient);
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#0c5216",
+                    "outline-variant": "#bfcaba",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002203",
+                    "on-surface": "#2b160f",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#005312",
+                    "surface-container-low": "#fff1ec",
+                    "tertiary-container": "#986200",
+                    "primary-container": "#2e7d32",
+                    "on-tertiary-fixed": "#2a1800",
+                    "background": "#fff8f6",
+                    "tertiary-fixed-dim": "#ffb957",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#ffe9e2",
+                    "secondary-container": "#acf4a4",
+                    "surface-container-high": "#ffe2d9",
+                    "on-secondary-container": "#307231",
+                    "inverse-on-surface": "#ffede7",
+                    "inverse-primary": "#88d982",
+                    "tertiary": "#774c00",
+                    "secondary-fixed": "#acf4a4",
+                    "on-surface-variant": "#40493d",
+                    "primary-fixed": "#a3f69c",
+                    "on-error": "#ffffff",
+                    "on-background": "#2b160f",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002204",
+                    "surface-container-highest": "#ffdbce",
+                    "on-tertiary-container": "#ffeede",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#88d982",
+                    "surface": "#fff8f6",
+                    "tertiary-fixed": "#ffddb5",
+                    "outline": "#707a6c",
+                    "surface-variant": "#ffdbce",
+                    "secondary": "#2a6b2c",
+                    "secondary-fixed-dim": "#91d78a",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#422b22",
+                    "on-tertiary-fixed-variant": "#643f00",
+                    "surface-tint": "#1b6d24",
+                    "primary": "#0d631b",
+                    "surface-dim": "#f8d2c4",
+                    "on-primary-container": "#cbffc2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(43, 22, 15, 0.04);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- Origin Warning Banner -->
+<div id="origin-warning-banner" class="hidden bg-amber-600 text-white px-4 py-3 text-center text-sm font-semibold relative z-[300] shadow-md transition-all duration-300">
+  <div class="max-w-container-max mx-auto flex items-center justify-center gap-2 flex-wrap">
+    <span class="material-symbols-outlined text-lg">warning</span>
+    <span>Opened via File Protocol (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">file://</code>). Data sharing (adding products, inquiry submissions) between the Admin Portal and the live site will NOT work because browsers isolate file origins.</span>
+    <span class="opacity-95">Please run the local server (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">npm run dev</code>) and open the site via <a href="http://localhost:5173" class="underline hover:text-amber-200">http://localhost:5173</a> instead.</span>
+  </div>
+</div>
+<!-- Top Navigation App Bar -->
+
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-sm h-20 flex items-center px-4">
+  <div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex items-center gap-6">
+      <button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high md:hidden" id="open-drawer-btn">
+        <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+      </button>
+      <a href="index.html" class="flex items-center gap-3">
+        <h1 class="font-display-lg text-title-md md:text-headline-lg font-bold text-primary">Navayuga Traders</h1>
+      </a>
+    </div>
+    
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Home</a>
+      <a href="navayuga_traders___products.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Products</a>
+      <a href="navayuga_traders___for_farmers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Farmers</a>
+      <a href="navayuga_traders___for_buyers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Buyers</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="navayuga_traders___for_buyers.html#quote" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-300 shadow-md">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Drawer (Side Menu Implementation) -->
+<div class="fixed inset-0 z-[100] pointer-events-none" id="side-drawer">
+  <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300" id="drawer-overlay"></div>
+  <aside class="absolute top-0 left-0 h-full w-80 bg-surface shadow-xl -translate-x-full transition-transform duration-300 pointer-events-auto rounded-r-xl p-6" id="drawer-content">
+    <div class="flex items-center justify-between mb-8">
+      <span class="font-display-lg text-title-md font-bold text-primary">Menu</span>
+      <button class="p-2 rounded-full hover:bg-surface-container-high" id="close-drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2">
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="font-title-md">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___products.html">
+        <span class="material-symbols-outlined">storefront</span>
+        <span class="font-title-md">Products</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_farmers.html">
+        <span class="material-symbols-outlined">agriculture</span>
+        <span class="font-title-md">For Farmers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_buyers.html">
+        <span class="material-symbols-outlined">business</span>
+        <span class="font-title-md">For Buyers</span>
+      </a>
+    </nav>
+  </aside>
+</div>
+
+<main class="pt-16 pb-20">
+<!-- Hero Section -->
+<section class="relative min-h-[530px] flex flex-col justify-center px-6 overflow-hidden bg-surface-container-low py-12">
+
+<div class="relative z-10 space-y-6">
+<div class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="agriculture">agriculture</span>
+                    Farmer First Network
+                </div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">
+                    Empowering <span class="text-primary">Farmers</span> Through Direct Trade
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm">
+                    We eliminate middlemen and purchase produce directly from your farm, ensuring you get the value you deserve for every grain.
+                </p>
+<div class="flex flex-col gap-4">
+<a class="bg-primary text-on-primary text-center py-4 rounded-xl font-title-md shadow-md hover:translate-y-[-2px] transition-all" href="#register">
+                        Become a Supplier
+                    </a>
+<button id="price-trends-btn" class="border-[1.5px] border-primary text-primary py-4 rounded-xl font-title-md hover:bg-primary/5 transition-colors">
+                        View Price Trends
+                    </button>
+</div>
+</div>
+<!-- Decorative Organic Shape -->
+<div class="absolute -bottom-10 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Benefits Bento Grid -->
+<section class="px-6 py-16 bg-surface">
+<div class="mb-10 text-center space-y-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Why Partner With Us?</h2>
+<p class="font-body-md text-on-surface-variant">Built on transparency and trust</p>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Fair Pricing Card -->
+<div class="glass-card p-6 rounded-2xl reveal-on-scroll">
+<div class="w-12 h-12 bg-secondary-container rounded-xl flex items-center justify-center mb-4 text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="currency_rupee">currency_rupee</span>
+</div>
+<h3 class="font-title-md text-title-md mb-2">Fair Pricing</h3>
+<p class="font-body-md text-on-surface-variant">Real-time market matching ensures you never sell below market value.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Quick Payments -->
+<div class="glass-card p-5 rounded-2xl reveal-on-scroll">
+<div class="w-10 h-10 bg-primary-container/20 rounded-lg flex items-center justify-center mb-3 text-primary">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Quick Payments</h3>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">Direct bank transfers within 24 hours of delivery.</p>
+</div>
+<!-- Long-term -->
+<div class="glass-card p-5 rounded-2xl reveal-on-scroll">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Partnerships</h3>
+<p class="text-[12px] text-on-surface-variant leading-relaxed">We grow with you through yearly procurement contracts.</p>
+</div>
+</div>
+<!-- Transparent Process -->
+<div class="glass-card p-6 rounded-2xl reveal-on-scroll flex items-center gap-6">
+<div class="shrink-0 w-14 h-14 bg-surface-container-highest rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="visibility">visibility</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md mb-1">Transparent Process</h3>
+<p class="font-body-md text-on-surface-variant">Step-by-step digital tracking from weighing to payment confirmation.</p>
+</div>
+</div>
+<!-- Quality Pricing -->
+<div class="relative overflow-hidden glass-card p-6 rounded-2xl reveal-on-scroll bg-on-secondary-fixed text-white border-none">
+<div class="relative z-10">
+<h3 class="font-title-md text-title-md mb-2">Quality-based Pricing</h3>
+<p class="font-body-md opacity-80 mb-4">Premium produce earns premium rates. Our digital testing ensures fair grading.</p>
+<div class="flex items-center gap-2 font-label-sm text-primary-fixed">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>Grade A+ Incentives</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-[80px]" data-icon="verified">verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Registration Form Section -->
+<section class="px-6 py-16 bg-surface-container-low" id="register">
+<div class="mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Become a Supplier</h2>
+<p class="font-body-md text-on-surface-variant">Fill in your details and our field officer will reach out to you.</p>
+</div>
+<form id="farmer-form" class="space-y-6">
+<!-- Step 1: Contact Details -->
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-outline-variant/30 space-y-4">
+<div class="flex items-center gap-2 mb-2 text-primary font-title-md">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                        Personal Details
+                    </div>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Full Name</label>
+<input id="farmer-name" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4 focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Enter your name" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Mobile Number</label>
+<input id="farmer-phone" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4 focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="+91 XXXXX XXXXX" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Step 2: Location -->
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-outline-variant/30 space-y-4">
+<div class="flex items-center gap-2 mb-2 text-primary font-title-md">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+                        Farm Location
+                    </div>
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2">
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Village</label>
+<input id="farmer-village" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="Village name" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">District</label>
+<input id="farmer-district" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="District" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">State</label>
+<select id="farmer-state" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4">
+<option>Select State</option>
+<option>Andhra Pradesh</option>
+<option>Karnataka</option>
+<option>Maharashtra</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Step 3: Produce Details -->
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-outline-variant/30 space-y-4">
+<div class="flex items-center gap-2 mb-2 text-primary font-title-md">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                        Crop Information
+                    </div>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Crop Name</label>
+<input id="farmer-crop" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="e.g. Basmati Rice, Turmeric" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Quantity (MT)</label>
+<input id="farmer-quantity" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="0.0" type="number"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Harvest Date</label>
+<input id="farmer-date" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" type="date"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Expected Price (per MT)</label>
+<input id="farmer-price" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="₹" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1 ml-1">Notes</label>
+<textarea id="farmer-notes" class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-4" placeholder="Any special requirements..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-5 rounded-2xl font-title-md shadow-lg active:scale-[0.98] transition-all" type="submit">
+                    Submit Registration
+                </button>
+<p class="text-center font-label-sm text-on-surface-variant px-8">
+                    By submitting, you agree to our Terms of Service for direct procurement.
+                </p>
+</form>
+</section>
+<!-- Testimonials -->
+<section class="px-6 py-16 bg-surface overflow-hidden">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-center mb-10">Stories from the Field</h2>
+<div class="relative">
+<div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 no-scrollbar">
+<!-- Testimonial 1 -->
+<div class="snap-center shrink-0 w-[85%] bg-surface-container rounded-3xl p-8 relative">
+<div class="absolute -top-4 -left-2 text-primary/10">
+<span class="material-symbols-outlined text-[64px]" data-icon="format_quote">format_quote</span>
+</div>
+<p class="italic text-on-surface font-body-lg mb-6 leading-relaxed relative z-10">
+                            "Earlier, I used to wait weeks for payment at the Mandi. With Navayuga, I get my money in my bank account the very next day. It has changed how I plan my next crop."
+                        </p>
+<div class="flex items-center gap-4">
+<img alt="Farmer Profile" class="w-12 h-12 rounded-full object-cover border-2 border-primary/20" data-alt="A portrait of a weathered, smiling elderly Indian farmer wearing a traditional white turban and cotton shirt. He stands against a backdrop of golden wheat fields during the golden hour, symbolizing reliability and agricultural success. The lighting is warm and cinematic, emphasizing the texture of his skin and the vibrancy of the field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5HzzsEb1jDDTIpk-zeIW23C5TmZu6_d80piBm3AkLFsE66Dmdz47SKmLUmSvjHtQSq4fY1mdSmVNkOjHOnpXOXwTliJm2o-xyagOK0xmhqT4Etg7cxhJiOZxG9JJNRXAaNEpYLbgrtrIVqK3NlNZnIN04AN8jhNS7lfXWzOEgVQ_blIVb11-QqIPS4pSuMps5fiUikpNI89WMTBAYdavP2lNlGc2TLS5V3D4WVIL6TsiycSNtP4rRDQ"/>
+<div>
+<p class="font-title-md text-on-surface">Ramesh Patil</p>
+<p class="font-label-sm text-primary">Village: Sangli, MH</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="snap-center shrink-0 w-[85%] bg-tertiary-container/10 rounded-3xl p-8 relative border border-tertiary/10">
+<div class="absolute -top-4 -left-2 text-tertiary/10">
+<span class="material-symbols-outlined text-[64px]" data-icon="format_quote">format_quote</span>
+</div>
+<p class="italic text-on-surface font-body-lg mb-6 leading-relaxed relative z-10">
+                            "The transparency in weighing and grading is what kept me coming back. No hidden charges, just a fair price for quality produce. They really value our hard work."
+                        </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-on-tertiary-fixed font-bold">SM</div>
+<div>
+<p class="font-title-md text-on-surface">Saritha Reddy</p>
+<p class="font-label-sm text-tertiary">Village: Kurnool, AP</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Bottom Navigation Bar (Mobile Destination Rule) -->
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest py-16 px-6">
+<div class="max-w-container-max mx-auto space-y-12">
+<div class="space-y-4">
+<span class="font-display-lg text-title-md font-bold text-primary">Navayuga Traders</span>
+<p class="text-on-surface-variant">Revolutionizing the agricultural supply chain across India.</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="font-title-md text-primary">Company</h4>
+<ul class="space-y-2 text-on-surface-variant font-body-md">
+<li>Products</li>
+<li>Services</li>
+<li>Our Story</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-title-md text-primary">Support</h4>
+<ul class="space-y-2 text-on-surface-variant font-body-md">
+<li>Contact</li>
+<li>FAQ</li>
+<li>Privacy</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/30 text-center">
+<p class="text-[12px] text-on-surface-variant opacity-60">© 2024 Navayuga Traders. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 w-full bg-surface/80 backdrop-blur-xl md:hidden z-50 px-6 py-4 flex justify-between items-center shadow-[0_-4px_24px_-4px_rgba(0,0,0,0.1)] border-t border-outline-variant/30">
+  <a href="index.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm mt-1">Home</span>
+  </a>
+  <a href="navayuga_traders___products.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">storefront</span>
+    <span class="text-[10px] font-label-sm mt-1">Products</span>
+  </a>
+  <a href="navayuga_traders___for_farmers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">agriculture</span>
+    <span class="text-[10px] font-label-sm mt-1">Farmers</span>
+  </a>
+  <a href="navayuga_traders___for_buyers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">business</span>
+    <span class="text-[10px] font-label-sm mt-1">Buyers</span>
+  </a>
+</nav>
+
+<!-- Price Trends Modal -->
+<div id="price-trends-modal" class="fixed inset-0 z-[150] hidden flex items-center justify-center p-4">
+  <div id="price-trends-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <div class="glass-card bg-surface w-full max-w-lg rounded-3xl p-6 relative z-10 animate-fade-up border border-white/20 shadow-2xl">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-display-lg text-title-md font-bold text-primary flex items-center gap-2">
+        <span class="material-symbols-outlined">trending_up</span> Crop Price Trends (per MT)
+      </h3>
+      <button id="close-price-modal" class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <p class="text-on-surface-variant font-body-md">Current market rates and trends compiled from major regional trading hubs.</p>
+      
+      <!-- Premium CSS Graph Bar Chart -->
+      <div id="price-trends-chart" class="space-y-3 bg-surface-container-low p-4 rounded-2xl text-on-surface">
+        <!-- Loaded dynamically -->
+      </div>
+      
+      <p class="text-[12px] text-outline italic text-center">Last updated: Today, 10:00 AM. Rates are indicators and subject to grading.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="success-toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[200] hidden bg-primary text-on-primary px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3 border border-white/20">
+  <span class="material-symbols-outlined text-2xl">check_circle</span>
+  <div>
+    <h4 class="font-bold text-sm">Success!</h4>
+    <p class="text-[12px] opacity-90" id="toast-message">Your details have been submitted.</p>
+  </div>
+</div>
+
+<script>
+        const db = window.supabaseClient;
+        // Reveal on scroll observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // View Price Trends Modal handlers
+        const priceBtn = document.getElementById('price-trends-btn');
+        const priceModal = document.getElementById('price-trends-modal');
+        const closePriceBtn = document.getElementById('close-price-modal');
+        const priceOverlay = document.getElementById('price-trends-overlay');
+
+        async function updatePriceTrends() {
+            const chartDiv = document.getElementById('price-trends-chart');
+            if (!chartDiv) return;
+
+            let storedRates = {};
+            try {
+                const { data, error } = await db
+                    .from('nt_crop_prices')
+                    .select('*');
+                if (error) {
+                    console.error("Error fetching crop prices from Supabase:", error);
+                } else if (data && data.length > 0) {
+                    data.forEach(item => {
+                        storedRates[item.crop_id] = {
+                            price: item.price,
+                            trend: item.trend
+                        };
+                    });
+                }
+            } catch (err) {
+                console.error("Failed to fetch crop prices:", err);
+            }
+            
+            const cropConfig = [
+                { id: 'basmati', name: 'Premium Basmati Rice', defaultPrice: '₹58,000', defaultTrend: '+4%', defaultWidth: '85%' },
+                { id: 'turmeric', name: 'Organic Turmeric', defaultPrice: '₹94,000', defaultTrend: '+7%', defaultWidth: '95%' },
+                { id: 'mung', name: 'Green Mung Beans', defaultPrice: '₹72,000', defaultTrend: '-2%', defaultWidth: '70%' },
+                { id: 'lentils', name: 'Red Lentils', defaultPrice: '₹64,000', defaultTrend: '+1%', defaultWidth: '65%' }
+            ];
+
+            let parsedPrices = cropConfig.map(crop => {
+                const item = storedRates[crop.id] || {};
+                const priceStr = item.price || crop.defaultPrice;
+                const trendStr = item.trend || crop.defaultTrend;
+                const numPrice = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+                return {
+                    ...crop,
+                    price: priceStr,
+                    trend: trendStr,
+                    numPrice: numPrice
+                };
+            });
+
+            const maxPrice = Math.max(...parsedPrices.map(p => p.numPrice), 1);
+
+            chartDiv.innerHTML = parsedPrices.map(crop => {
+                let width = crop.defaultWidth;
+                if (maxPrice > 1 && crop.numPrice > 0) {
+                    width = Math.max(15, Math.round((crop.numPrice / maxPrice) * 95)) + '%';
+                }
+
+                const isNegative = crop.trend.includes('-');
+                const textClass = isNegative ? 'text-tertiary font-bold' : 'text-primary font-bold';
+                const bgClass = isNegative ? 'bg-tertiary' : 'bg-primary';
+
+                return `
+                    <div>
+                      <div class="flex justify-between font-label-md mb-1">
+                        <span>${crop.name}</span>
+                        <span class="${textClass}">${crop.price} (${crop.trend})</span>
+                      </div>
+                      <div class="w-full bg-outline-variant/30 h-2.5 rounded-full overflow-hidden">
+                        <div class="${bgClass} h-full rounded-full" style="width: ${width}"></div>
+                      </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize chart data
+        updatePriceTrends();
+
+        if (priceBtn && priceModal && closePriceBtn && priceOverlay) {
+            priceBtn.addEventListener('click', () => {
+                updatePriceTrends();
+                priceModal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            });
+            const hidePriceModal = () => {
+                priceModal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            };
+            closePriceBtn.addEventListener('click', hidePriceModal);
+            priceOverlay.addEventListener('click', hidePriceModal);
+        }
+
+        // Farmer form submission validation and success toast
+        const farmerForm = document.getElementById('farmer-form');
+        const toast = document.getElementById('success-toast');
+        const toastMsg = document.getElementById('toast-message');
+
+        if (farmerForm && toast) {
+            farmerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Simple validation
+                const inputs = farmerForm.querySelectorAll('input[type="text"], input[type="tel"], select, input[type="number"]');
+                let valid = true;
+                inputs.forEach(input => {
+                    if (!input.value || input.value === 'Select State') {
+                        valid = false;
+                        input.classList.add('border-error');
+                        input.addEventListener('input', () => input.classList.remove('border-error'), { once: true });
+                    }
+                });
+
+                if (!valid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Save submission to Supabase
+                try {
+                    const name = document.getElementById('farmer-name').value;
+                    const phone = document.getElementById('farmer-phone').value;
+                    const village = document.getElementById('farmer-village').value;
+                    const district = document.getElementById('farmer-district').value;
+                    const state = document.getElementById('farmer-state').value;
+                    const crop = document.getElementById('farmer-crop').value;
+                    const quantity = document.getElementById('farmer-quantity').value;
+                    const date = document.getElementById('farmer-date').value;
+                    const price = document.getElementById('farmer-price').value;
+                    const notes = document.getElementById('farmer-notes').value;
+
+                    const { error } = await db
+                        .from('farmer_submissions')
+                        .insert([{
+                            name, phone, village, district, state, crop, quantity, delivery_date: date, price, notes
+                        }]);
+
+                    if (error) throw error;
+
+                    // Show success toast
+                    toastMsg.innerText = "Thank you! Our field officer will contact you within 24 hours.";
+                    toast.classList.remove('hidden');
+                    farmerForm.reset();
+
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                    }, 4000);
+                } catch (err) {
+                    console.error("Failed to save supplier submission to Supabase", err);
+                    alert("Submission failed: " + (err.message || err));
+                }
+            });
+        }
+    </script>
+
+<script>
+  // Highlight active page in navigation
+  (function() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+      }
+    });
+    document.querySelectorAll('.nav-bottom-item').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold');
+      }
+    });
+
+    // Drawer toggle logic
+    const openDrawerBtn = document.getElementById('open-drawer-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer');
+    const drawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const content = document.getElementById('drawer-content');
+
+    if (openDrawerBtn && drawer && overlay && content && closeDrawerBtn) {
+      function toggleDrawer(open) {
+        if (open) {
+          drawer.classList.remove('pointer-events-none');
+          overlay.classList.add('opacity-100');
+          content.classList.remove('-translate-x-full');
+        } else {
+          drawer.classList.add('pointer-events-none');
+          overlay.classList.remove('opacity-100');
+          content.classList.add('-translate-x-full');
+        }
+      }
+
+      openDrawerBtn.addEventListener('click', () => toggleDrawer(true));
+      closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+      overlay.addEventListener('click', () => toggleDrawer(false));
+    }
+  })();
+
+  // File protocol check warning banner
+  if (window.location.protocol === 'file:') {
+    const banner = document.getElementById('origin-warning-banner');
+    if (banner) banner.classList.remove('hidden');
+  }
+</script>
+</body></html>

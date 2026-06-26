@@ -1,0 +1,139 @@
+{
+  "designSystems": [
+    {
+      "designSystem": {
+        "displayName": "Navayuga Trading System",
+        "styleGuidelines": "## Brand & Style\nThe design system embodies a \"Modern Agrarian\" aesthetic—a fusion of corporate reliability and organic vitality. It is designed to position the product as a premium leader in agricultural trading, balancing the precision of global logistics with the warmth of the earth. \n\nThe visual style leans into **Modern Corporate** with heavy influences of **Glassmorphism** to signify transparency and high-tech efficiency. The interface should feel expansive, utilizing generous whitespace to evoke the openness of cultivated fields, while maintaining a structured grid that communicates stability and trust. \n\n**Emotional Response:**\n- **Reliability:** Through structured layouts and disciplined typography.\n- **Growth:** Through a vibrant, nature-inspired primary palette.\n- **Sophistication:** Through subtle translucency and smooth motion.\n\n## Layout & Spacing\nThe system employs a **12-column fluid grid** for desktop and a **4-column grid** for mobile. Spacing is based on an 8px root unit to ensure mathematical harmony across all components.\n\n- **Desktop:** 64px outside margins to create a high-end, spacious feel.\n- **Padding:** Internal card padding should be generous (defaulting to 32px or `spacing.unit * 4`) to emphasize the \"Large Card\" aesthetic.\n- **Section Spacing:** Vertical rhythm between major sections should be 80px - 120px to allow the design to \"breathe.\"\n\n## Elevation & Depth\nDepth is created through a combination of soft, ambient shadows and **Glassmorphism**. \n\n1.  **Base Layer:** The Light Beige or Dark Green background.\n2.  **Card Layer:** White (Light Mode) or Translucent Dark Green (Dark Mode) with a 4% opacity shadow, 24px blur, and 8px Y-offset.\n3.  **Glass Layer:** Navigation bars and overlays use a `backdrop-filter: blur(12px)` with a 70% opacity fill of the surface color. A subtle 1px border (white at 10% opacity) should be added to the top edge to simulate a light-catching glass rim.\n4.  **Interactive Layer:** On hover, cards should lift slightly (Y-offset increases to 12px) and shadows should become slightly more diffused.\n\n## Components\n\n### Buttons\n- **Primary:** Solid #2E7D32 with white text. High-radius (8px). \n- **Secondary:** Ghost style with a 1.5px border of the Primary Green.\n- **States:** Transitions should be 300ms ease-in-out. On hover, apply a subtle scale-up (1.02x).\n\n### Cards\n- **Feature Cards:** Large, white background, 16px radius, with a subtle internal glow.\n- **Data Cards:** Use Earth Brown for labels and Primary Green for key metrics.\n\n### Inputs\n- **Text Fields:** Light Beige background in light mode to blend with the page, moving to White on focus. 1.5px border stroke in Primary Green when active.\n\n### Navigation\n- **Sticky Header:** Implement glassmorphism with a background blur. Use the logo in full color on the left, with navigation links in Plus Jakarta Sans (Medium weight).\n\n### Transitions\n- **Scroll-Reveal:** Elements should fade in and slide up 20px as they enter the viewport.\n- **Mode Toggle:** A smooth cross-fade transition between light and dark modes, ensuring the glassmorphism blurs re-calculate instantly.",
+        "theme": {
+          "bodyFont": "INTER",
+          "bodyFontFamily": "Inter",
+          "colorMode": "LIGHT",
+          "colorVariant": "FIDELITY",
+          "customColor": "#2e7d32",
+          "designMd": "---\nname: Navayuga Trading System\ncolors:\n  surface: '#fff8f6'\n  surface-dim: '#f8d2c4'\n  surface-bright: '#fff8f6'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#fff1ec'\n  surface-container: '#ffe9e2'\n  surface-container-high: '#ffe2d9'\n  surface-container-highest: '#ffdbce'\n  on-surface: '#2b160f'\n  on-surface-variant: '#40493d'\n  inverse-surface: '#422b22'\n  inverse-on-surface: '#ffede7'\n  outline: '#707a6c'\n  outline-variant: '#bfcaba'\n  surface-tint: '#1b6d24'\n  primary: '#0d631b'\n  on-primary: '#ffffff'\n  primary-container: '#2e7d32'\n  on-primary-container: '#cbffc2'\n  inverse-primary: '#88d982'\n  secondary: '#2a6b2c'\n  on-secondary: '#ffffff'\n  secondary-container: '#acf4a4'\n  on-secondary-container: '#307231'\n  tertiary: '#774c00'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#986200'\n  on-tertiary-container: '#ffeede'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#a3f69c'\n  primary-fixed-dim: '#88d982'\n  on-primary-fixed: '#002204'\n  on-primary-fixed-variant: '#005312'\n  secondary-fixed: '#acf4a4'\n  secondary-fixed-dim: '#91d78a'\n  on-secondary-fixed: '#002203'\n  on-secondary-fixed-variant: '#0c5216'\n  tertiary-fixed: '#ffddb5'\n  tertiary-fixed-dim: '#ffb957'\n  on-tertiary-fixed: '#2a1800'\n  on-tertiary-fixed-variant: '#643f00'\n  background: '#fff8f6'\n  on-background: '#2b160f'\n  surface-variant: '#ffdbce'\ntypography:\n  display-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 56px\n    fontWeight: '700'\n    lineHeight: 64px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 40px\n  headline-lg-mobile:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 36px\n  title-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  label-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '500'\n    lineHeight: 20px\n    letterSpacing: 0.01em\n  label-sm:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: 16px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  unit: 8px\n  container-max: 1280px\n  gutter: 24px\n  margin-desktop: 64px\n  margin-mobile: 20px\n---\n\n## Brand & Style\nThe design system embodies a \"Modern Agrarian\" aesthetic—a fusion of corporate reliability and organic vitality. It is designed to position the product as a premium leader in agricultural trading, balancing the precision of global logistics with the warmth of the earth. \n\nThe visual style leans into **Modern Corporate** with heavy influences of **Glassmorphism** to signify transparency and high-tech efficiency. The interface should feel expansive, utilizing generous whitespace to evoke the openness of cultivated fields, while maintaining a structured grid that communicates stability and trust. \n\n**Emotional Response:**\n- **Reliability:** Through structured layouts and disciplined typography.\n- **Growth:** Through a vibrant, nature-inspired primary palette.\n- **Sophistication:** Through subtle translucency and smooth motion.\n\n## Colors\nThe palette is rooted in the natural lifecycle of agriculture. **Primary Green** represents active growth and is used for primary actions. **Dark Green** is reserved for high-level branding and \"Stability\" states, particularly in dark mode surfaces. **Light Beige** serves as the primary canvas in light mode, offering a softer, more organic alternative to pure white.\n\n### Semantic Mapping\n- **Primary:** #2E7D32 (Key actions, active states)\n- **Surface:** White in light mode; Dark Green (#1B5E20) in dark mode to maintain brand presence.\n- **On-Surface:** Earth Brown (#8D6E63) for secondary text; Dark Green for headings.\n- **Accent:** Golden Yellow (#F9A825) for \"Harvest\" metrics, value-added highlights, and warnings.\n\n## Typography\nThis design system utilizes a dual-font strategy. **Plus Jakarta Sans** provides a friendly yet professional geometric touch for headings, ensuring the brand feels modern and approachable. **Inter** is used for all functional body text and UI labels due to its exceptional legibility in data-heavy trading environments.\n\nFor large display styles, a slight negative letter-spacing is applied to maintain a tight, editorial look. Body text should maintain a generous line height (1.5x+) to ensure readability during long trading sessions.\n\n## Layout & Spacing\nThe system employs a **12-column fluid grid** for desktop and a **4-column grid** for mobile. Spacing is based on an 8px root unit to ensure mathematical harmony across all components.\n\n- **Desktop:** 64px outside margins to create a high-end, spacious feel.\n- **Padding:** Internal card padding should be generous (defaulting to 32px or `spacing.unit * 4`) to emphasize the \"Large Card\" aesthetic.\n- **Section Spacing:** Vertical rhythm between major sections should be 80px - 120px to allow the design to \"breathe.\"\n\n## Elevation & Depth\nDepth is created through a combination of soft, ambient shadows and **Glassmorphism**. \n\n1.  **Base Layer:** The Light Beige or Dark Green background.\n2.  **Card Layer:** White (Light Mode) or Translucent Dark Green (Dark Mode) with a 4% opacity shadow, 24px blur, and 8px Y-offset.\n3.  **Glass Layer:** Navigation bars and overlays use a `backdrop-filter: blur(12px)` with a 70% opacity fill of the surface color. A subtle 1px border (white at 10% opacity) should be added to the top edge to simulate a light-catching glass rim.\n4.  **Interactive Layer:** On hover, cards should lift slightly (Y-offset increases to 12px) and shadows should become slightly more diffused.\n\n## Shapes\nThe shape language is consistently \"Rounded\" to evoke an organic, approachable feel. \n\n- **Primary Buttons & Inputs:** 0.5rem (8px) corner radius.\n- **Standard Cards:** 1rem (16px) corner radius.\n- **Large Container/Sections:** 1.5rem (24px) corner radius.\n- **Icons:** Contained within circular or heavily rounded enclosures when used as decorative elements.\n\n## Components\n\n### Buttons\n- **Primary:** Solid #2E7D32 with white text. High-radius (8px). \n- **Secondary:** Ghost style with a 1.5px border of the Primary Green.\n- **States:** Transitions should be 300ms ease-in-out. On hover, apply a subtle scale-up (1.02x).\n\n### Cards\n- **Feature Cards:** Large, white background, 16px radius, with a subtle internal glow.\n- **Data Cards:** Use Earth Brown for labels and Primary Green for key metrics.\n\n### Inputs\n- **Text Fields:** Light Beige background in light mode to blend with the page, moving to White on focus. 1.5px border stroke in Primary Green when active.\n\n### Navigation\n- **Sticky Header:** Implement glassmorphism with a background blur. Use the logo in full color on the left, with navigation links in Plus Jakarta Sans (Medium weight).\n\n### Transitions\n- **Scroll-Reveal:** Elements should fade in and slide up 20px as they enter the viewport.\n- **Mode Toggle:** A smooth cross-fade transition between light and dark modes, ensuring the glassmorphism blurs re-calculate instantly.",
+          "font": "PLUS_JAKARTA_SANS",
+          "headlineFont": "PLUS_JAKARTA_SANS",
+          "headlineFontFamily": "Plus Jakarta Sans",
+          "labelFont": "INTER",
+          "labelFontFamily": "Inter",
+          "namedColors": {
+            "background": "#fff8f6",
+            "error": "#ba1a1a",
+            "error_container": "#ffdad6",
+            "inverse_on_surface": "#ffede7",
+            "inverse_primary": "#88d982",
+            "inverse_surface": "#422b22",
+            "on_background": "#2b160f",
+            "on_error": "#ffffff",
+            "on_error_container": "#93000a",
+            "on_primary": "#ffffff",
+            "on_primary_container": "#cbffc2",
+            "on_primary_fixed": "#002204",
+            "on_primary_fixed_variant": "#005312",
+            "on_secondary": "#ffffff",
+            "on_secondary_container": "#307231",
+            "on_secondary_fixed": "#002203",
+            "on_secondary_fixed_variant": "#0c5216",
+            "on_surface": "#2b160f",
+            "on_surface_variant": "#40493d",
+            "on_tertiary": "#ffffff",
+            "on_tertiary_container": "#ffeede",
+            "on_tertiary_fixed": "#2a1800",
+            "on_tertiary_fixed_variant": "#643f00",
+            "outline": "#707a6c",
+            "outline_variant": "#bfcaba",
+            "primary": "#0d631b",
+            "primary_container": "#2e7d32",
+            "primary_fixed": "#a3f69c",
+            "primary_fixed_dim": "#88d982",
+            "secondary": "#2a6b2c",
+            "secondary_container": "#acf4a4",
+            "secondary_fixed": "#acf4a4",
+            "secondary_fixed_dim": "#91d78a",
+            "surface": "#fff8f6",
+            "surface_bright": "#fff8f6",
+            "surface_container": "#ffe9e2",
+            "surface_container_high": "#ffe2d9",
+            "surface_container_highest": "#ffdbce",
+            "surface_container_low": "#fff1ec",
+            "surface_container_lowest": "#ffffff",
+            "surface_dim": "#f8d2c4",
+            "surface_tint": "#1b6d24",
+            "surface_variant": "#ffdbce",
+            "tertiary": "#774c00",
+            "tertiary_container": "#986200",
+            "tertiary_fixed": "#ffddb5",
+            "tertiary_fixed_dim": "#ffb957"
+          },
+          "overrideNeutralColor": "#8d6e63",
+          "overridePrimaryColor": "#2e7d32",
+          "overrideSecondaryColor": "#1b5e20",
+          "overrideTertiaryColor": "#f9a825",
+          "roundness": "ROUND_EIGHT",
+          "spacing": {
+            "container-max": "1280px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "margin-mobile": "20px",
+            "unit": "8px"
+          },
+          "spacingScale": 2,
+          "typography": {
+            "body-lg": {
+              "fontFamily": "Inter",
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "28px"
+            },
+            "body-md": {
+              "fontFamily": "Inter",
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "24px"
+            },
+            "display-lg": {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontSize": "56px",
+              "fontWeight": "700",
+              "letterSpacing": "-0.02em",
+              "lineHeight": "64px"
+            },
+            "headline-lg": {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontSize": "32px",
+              "fontWeight": "600",
+              "lineHeight": "40px"
+            },
+            "headline-lg-mobile": {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontSize": "28px",
+              "fontWeight": "600",
+              "lineHeight": "36px"
+            },
+            "label-md": {
+              "fontFamily": "Inter",
+              "fontSize": "14px",
+              "fontWeight": "500",
+              "letterSpacing": "0.01em",
+              "lineHeight": "20px"
+            },
+            "label-sm": {
+              "fontFamily": "Inter",
+              "fontSize": "12px",
+              "fontWeight": "600",
+              "lineHeight": "16px"
+            },
+            "title-md": {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "lineHeight": "28px"
+            }
+          }
+        }
+      },
+      "name": "assets/95309c0efeed422ea012f21ab11f9020",
+      "version": "1"
+    }
+  ]
+}

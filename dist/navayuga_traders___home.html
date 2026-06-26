@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Navayuga Traders | Connecting Farmers with Markets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#0c5216",
+                    "outline-variant": "#bfcaba",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002203",
+                    "on-surface": "#2b160f",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#005312",
+                    "surface-container-low": "#fff1ec",
+                    "tertiary-container": "#986200",
+                    "primary-container": "#2e7d32",
+                    "on-tertiary-fixed": "#2a1800",
+                    "background": "#fff8f6",
+                    "tertiary-fixed-dim": "#ffb957",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#ffe9e2",
+                    "secondary-container": "#acf4a4",
+                    "surface-container-high": "#ffe2d9",
+                    "on-secondary-container": "#307231",
+                    "inverse-on-surface": "#ffede7",
+                    "inverse-primary": "#88d982",
+                    "tertiary": "#774c00",
+                    "secondary-fixed": "#acf4a4",
+                    "on-surface-variant": "#40493d",
+                    "primary-fixed": "#a3f69c",
+                    "on-error": "#ffffff",
+                    "on-background": "#2b160f",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002204",
+                    "surface-container-highest": "#ffdbce",
+                    "on-tertiary-container": "#ffeede",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#88d982",
+                    "surface": "#fff8f6",
+                    "tertiary-fixed": "#ffddb5",
+                    "outline": "#707a6c",
+                    "surface-variant": "#ffdbce",
+                    "secondary": "#2a6b2c",
+                    "secondary-fixed-dim": "#91d78a",
+                    "surface-bright": "#fff8f6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#422b22",
+                    "on-tertiary-fixed-variant": "#643f00",
+                    "surface-tint": "#1b6d24",
+                    "primary": "#0d631b",
+                    "surface-dim": "#f8d2c4",
+                    "on-primary-container": "#cbffc2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary/30 selection:text-primary">
+<!-- Origin Warning Banner -->
+<div id="origin-warning-banner" class="hidden bg-amber-600 text-white px-4 py-3 text-center text-sm font-semibold relative z-[300] shadow-md transition-all duration-300">
+  <div class="max-w-container-max mx-auto flex items-center justify-center gap-2 flex-wrap">
+    <span class="material-symbols-outlined text-lg">warning</span>
+    <span>Opened via File Protocol (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">file://</code>). Data sharing (adding products, inquiry submissions) between the Admin Portal and the live site will NOT work because browsers isolate file origins.</span>
+    <span class="opacity-95">Please run the local server (<code class="bg-black/20 px-1 py-0.5 rounded text-xs font-mono">npm run dev</code>) and open the site via <a href="http://localhost:5173" class="underline hover:text-amber-200">http://localhost:5173</a> instead.</span>
+  </div>
+</div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-sm h-20 flex items-center px-4">
+  <div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex items-center gap-6">
+      <button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high md:hidden" id="open-drawer-btn">
+        <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+      </button>
+      <a href="index.html" class="flex items-center gap-3">
+        <h1 class="font-display-lg text-title-md md:text-headline-lg font-bold text-primary">Navayuga Traders</h1>
+      </a>
+    </div>
+    
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Home</a>
+      <a href="navayuga_traders___products.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">Products</a>
+      <a href="navayuga_traders___for_farmers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Farmers</a>
+      <a href="navayuga_traders___for_buyers.html" class="nav-link font-label-md text-on-surface-variant hover:text-primary transition-colors">For Buyers</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="navayuga_traders___for_buyers.html#quote" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-300 shadow-md">
+        Request Quote
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Drawer (Side Menu Implementation) -->
+<div class="fixed inset-0 z-[100] pointer-events-none" id="side-drawer">
+  <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300" id="drawer-overlay"></div>
+  <aside class="absolute top-0 left-0 h-full w-80 bg-surface shadow-xl -translate-x-full transition-transform duration-300 pointer-events-auto rounded-r-xl p-6" id="drawer-content">
+    <div class="flex items-center justify-between mb-8">
+      <span class="font-display-lg text-title-md font-bold text-primary">Menu</span>
+      <button class="p-2 rounded-full hover:bg-surface-container-high" id="close-drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2">
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="font-title-md">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___products.html">
+        <span class="material-symbols-outlined">storefront</span>
+        <span class="font-title-md">Products</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_farmers.html">
+        <span class="material-symbols-outlined">agriculture</span>
+        <span class="font-title-md">For Farmers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-colors" href="navayuga_traders___for_buyers.html">
+        <span class="material-symbols-outlined">business</span>
+        <span class="font-title-md">For Buyers</span>
+      </a>
+    </nav>
+  </aside>
+</div>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[751px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Sun-drenched agricultural field" class="w-full h-full object-cover" data-alt="A wide-angle landscape shot of a vast, sun-drenched golden wheat field under a clear blue sky during the golden hour. The sunlight creates a warm, hazy glow across the landscape, symbolizing growth and reliability. The visual style is premium and cinematic, incorporating the modern agrarian aesthetic with high contrast and vibrant natural greens and earth browns to evoke a sense of trust and bounty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnY2Ba43VPxNP9ocwGLsIlzCGdbeJbK4aaZP0DckldVFJmYobRSZqjxWMjrQKZ9QwET6xJxlBA1M67Gwmtc4suTKAgiNyXiRVNCH7oQDNvgzhScl_Ka_ZIGimF1K2sVYFp6wSVcS0vuLrrdzz1-MOVjtbLx3TSGQt714p4KFoFUex93g0CzhC92ygfRzdjFybYUucg9Ik40wfyVFGEybkrtDj0RB6sUdfaRYb-B7G5JNHiuGtG24mO4Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile pt-20 max-w-xl">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm mb-6">Empowering Agriculture</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-6 leading-tight">
+                    Connecting Farmers <br/>with Markets
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                    We purchase quality agricultural produce directly from farmers and supply trusted products to wholesalers, retailers, and businesses across the region.
+                </p>
+<div class="flex flex-col gap-4">
+<button onclick="window.location.href='navayuga_traders___products.html'" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-title-md text-title-md shadow-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                        Explore Products
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button onclick="window.location.href='navayuga_traders___for_farmers.html'" class="border-2 border-primary text-primary px-8 py-4 rounded-xl font-title-md text-title-md flex items-center justify-center hover:bg-primary/5 transition-colors">
+                        Become a Supplier
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="px-margin-mobile -mt-12 relative z-20">
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-md">
+<span class="font-display-lg text-headline-lg text-primary mb-1">5K+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Happy Farmers</span>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-md">
+<span class="font-display-lg text-headline-lg text-tertiary-container mb-1">200+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Wholesalers</span>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-md">
+<span class="font-display-lg text-headline-lg text-primary mb-1">1.2K+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Retail Partners</span>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-md">
+<span class="font-display-lg text-headline-lg text-tertiary-container mb-1">10M+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Tons Delivered</span>
+</div>
+</div>
+</section>
+<!-- Why Choose Us Section -->
+<section class="py-20 px-margin-mobile">
+<div class="text-center mb-12 reveal">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Why Choose Us</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">Providing excellence through structured logistics and direct farmer connections.</p>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<div class="bg-surface-container p-6 rounded-2xl flex gap-5 items-start reveal">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="groups">groups</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Direct Farmer Network</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Eliminating middlemen to ensure farmers get the best value for their produce.</p>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl flex gap-5 items-start reveal">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-2xl" data-icon="verified">verified</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Premium Quality</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Strict quality control protocols for every shipment we handle.</p>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl flex gap-5 items-start reveal">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="payments">payments</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Transparent Pricing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Honest and market-competitive pricing for both buyers and sellers.</p>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl flex gap-5 items-start reveal">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-2xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-1">Reliable Supply</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Year-round availability of essential agricultural staples.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="py-20 bg-surface-container-low overflow-hidden">
+<div class="px-margin-mobile mb-10 flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Featured Products</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Our core agricultural categories</p>
+</div>
+<div class="flex gap-2">
+<button id="carousel-prev" class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button id="carousel-next" class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div id="featured-products-carousel" class="flex overflow-x-auto gap-6 px-margin-mobile pb-8 hide-scrollbar scroll-smooth">
+<!-- Grains Card -->
+<div class="min-w-[280px] bg-surface rounded-3xl overflow-hidden shadow-sm group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Grains product category" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A macro photography shot of mixed organic grains including golden wheat, brown rice, and yellow corn, piled artistically in a rustic burlap sack. The lighting is soft and natural, emphasizing the texture and purity of the produce. The aesthetic is clean and modern, highlighting the high-quality organic standards of Navayuga Traders." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeXtBEmZbRt1bpJvIs4m42Opq0_oz6HwEj9Qo5yhh_mC_IEmF1v5qXkWAeFBks_Dls3lqGWdj4meCG5ZaCLeMOLBMLUHlA-dsj8Ni85fJAgJ0g3OTQ_8CEkxT8DJCnTz5XAqPE0iv8XPHihceiSfsWc7OqnWZh6YHTef9bCiM91MPtsE7QrJqEAkYscX8q4XbjdhY2zZtZXx2M_AfcwtFuyvJGfd971eMqykVvCzRlQAe883HpnZyEDg"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm">High Demand</div>
+</div>
+<div class="p-6">
+<h5 class="font-title-md text-title-md text-on-surface mb-2">Essential Grains</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Premium wheat, rice, and maize sourced from the heartlands.</p>
+<button onclick="window.location.href='navayuga_traders___products.html?category=Grains'" class="text-primary font-label-md text-label-md flex items-center gap-1">View Details <span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span></button>
+</div>
+</div>
+<!-- Pulses Card -->
+<div class="min-w-[280px] bg-surface rounded-3xl overflow-hidden shadow-sm group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Pulses and legumes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A vibrant arrangement of various dried pulses and legumes, including red lentils, green mung beans, and chickpeas, displayed in minimal clay bowls on a light wooden surface. The composition is clean and organized, suggesting reliable quality and systematic supply chain management. The color palette is earth-toned with natural pops of color." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAht-Bf2QQZnPMhNfuQKrVaMZkddfRtRM7LbP06cLxKyARtfaXZ7yPbYgDt3_Jk6HzzldSBDXCrCYUupZwN1XFU4-Tv6lYFVjkX9Jsyf3RfdNNe5GsWQnKu5YM_yBN89q3Rcyzyfh3fcbGXTPZ2vdIli606uajJCs7wvmNMwLfqcr__xvRfJrrBquGMCGKYqdAMOYE_1r5jkBLJ1szpL4zOS-YJoObEjs7Hu5LYbR-tfplkkmZCEawSBA"/>
+</div>
+<div class="p-6">
+<h5 class="font-title-md text-title-md text-on-surface mb-2">Nutritious Pulses</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Protein-rich lentils, beans, and peas dried to perfection.</p>
+<button onclick="window.location.href='navayuga_traders___products.html?category=Pulses'" class="text-primary font-label-md text-label-md flex items-center gap-1">View Details <span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span></button>
+</div>
+</div>
+<!-- Seeds Card -->
+<div class="min-w-[280px] bg-surface rounded-3xl overflow-hidden shadow-sm group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Agricultural seeds" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of high-grade agricultural seeds spilling from a glass jar onto a clean white surface. The lighting is crisp and surgical, emphasizing the perfection and viability of the seeds. The scene conveys technological precision in agriculture, aligning with the brand's commitment to reliability and growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKmn6dr5X0_s6gJFrHAtlFYr8Vf9otkZBvhAEtVnGpwbK65rRfCOvji5T2YNAGLaF9lcL8XGn03zcEwsb9Zks0AsYm79L7spykppxM1oQyL9x_KgsygS4MbOqolRaOZvPP5jYlxnlSFDiRzwBfYmbzVV1mHgzgWiae7fygGwYDn_OvMUSJ9i2iIupTMQ4GEbrmalY-sryIMJRcHko-Jn3Pr-0WtdQm7ggmKzZ_Tz-rRr7zxZTbrUISwg"/>
+</div>
+<div class="p-6">
+<h5 class="font-title-md text-title-md text-on-surface mb-2">Selected Seeds</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Oil seeds and planting seeds with high germination rates.</p>
+<button onclick="window.location.href='navayuga_traders___products.html?category=Seeds'" class="text-primary font-label-md text-label-md flex items-center gap-1">View Details <span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span></button>
+</div>
+</div>
+<!-- Spices Card -->
+<div class="min-w-[280px] bg-surface rounded-3xl overflow-hidden shadow-sm group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Assorted spices" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A dynamic, colorful flat-lay of exotic spices like turmeric, chili pods, and black pepper arranged geometrically on a dark slate background. The image is high-contrast, highlighting the rich colors and textures of the spices. It represents the global trading aspect of the business with a modern, high-end culinary appeal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhFsdqf-Ytu8uingAst5T10uBu6MAUclHsLZHAYreKuKhmcYq7rS3ieyy1tVKHjjQJkSFUgUSIdSX4CMKNmneidrC4sGWwoa_k7-fpOdRIH_DbwqHDfJ89eRK-kjzCv0uja7mf9Xh7z49wMbMzceBYtf4r-UujJfWMr5Fx97YtzAdNclyTSq8vqHWL_4llUJyH9tVwQWoybz1sOavQDQ-lnz0GEZR9RtjYcLFTHNN86_77gSc-YrTtNQ"/>
+</div>
+<div class="p-6">
+<h5 class="font-title-md text-title-md text-on-surface mb-2">Aromatic Spices</h5>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Whole and ground spices sourced directly from the growers.</p>
+<button onclick="window.location.href='navayuga_traders___products.html?category=Spices'" class="text-primary font-label-md text-label-md flex items-center gap-1">View Details <span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- How We Work - Process Timeline -->
+<section id="how-we-work" class="py-20 px-margin-mobile">
+<div class="mb-12">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">How We Work</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A streamlined journey from farm to destination.</p>
+</div>
+<div class="relative space-y-12">
+<!-- Vertical Line -->
+<div class="absolute left-6 top-4 bottom-4 w-0.5 bg-outline-variant/30"></div>
+<!-- Step 1 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Farmer Sells Produce</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Direct procurement at fair market prices from our network.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Quality Inspection</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Rigorous grading and testing for moisture and purity.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Secure Storage</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Hygienic warehousing with climate control where necessary.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Wholesale Distribution</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Bulk delivery to our industrial and commercial partners.</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="store">store</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Retail Supply</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Distribution to local markets and neighborhood retailers.</p>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="relative flex gap-6 reveal">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined" data-icon="home_delivery">home_filled</span>
+</div>
+<div class="flex-1 pt-1">
+<h6 class="font-title-md text-title-md text-on-surface">Customer Delivery</h6>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Ensuring fresh produce reaches the final consumer doorstep.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="py-16 px-margin-mobile">
+<div class="bg-primary p-10 rounded-[40px] text-center text-on-primary shadow-2xl relative overflow-hidden">
+<!-- Abstract Pattern Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-tertiary rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-4">Partner with Navayuga Traders Today</h3>
+<p class="font-body-lg text-body-lg opacity-90 mb-10">Join our growing network of farmers and businesses building a better agricultural future.</p>
+<button onclick="window.location.href='navayuga_traders___for_buyers.html#quote'" class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-full font-title-md text-title-md shadow-lg hover:scale-105 transition-transform">
+                        Contact Us
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full py-20">
+<div class="max-w-container-max mx-auto px-margin-mobile grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-2">
+<h2 class="font-display-lg text-display-lg font-bold text-primary mb-6">Navayuga Traders</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-sm">Leading the way in agricultural logistics and distribution, connecting the roots of our land to the hearts of our markets.</p>
+</div>
+<div>
+<h6 class="font-title-md text-title-md text-on-surface mb-6">Quick Links</h6>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="navayuga_traders___products.html">Products</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#how-we-work">Services</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="navayuga_traders___for_farmers.html">Become a Supplier</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#newsletter" onclick="event.preventDefault(); alert('Newsletter subscription coming soon!')">Newsletter</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-title-md text-title-md text-on-surface mb-6">Contact</h6>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+                        info@navayugatraders.com
+                    </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+                        +91 98765 43210
+                    </li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile mt-20 pt-8 border-t border-outline-variant/30 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">© 2024 Navayuga Traders. All rights reserved.</p>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 w-full bg-surface/80 backdrop-blur-xl md:hidden z-50 px-6 py-4 flex justify-between items-center shadow-[0_-4px_24px_-4px_rgba(0,0,0,0.1)] border-t border-outline-variant/30">
+  <a href="index.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm mt-1">Home</span>
+  </a>
+  <a href="navayuga_traders___products.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">storefront</span>
+    <span class="text-[10px] font-label-sm mt-1">Products</span>
+  </a>
+  <a href="navayuga_traders___for_farmers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">agriculture</span>
+    <span class="text-[10px] font-label-sm mt-1">Farmers</span>
+  </a>
+  <a href="navayuga_traders___for_buyers.html" class="flex flex-col items-center nav-bottom-item text-on-surface-variant">
+    <span class="material-symbols-outlined">business</span>
+    <span class="text-[10px] font-label-sm mt-1">Buyers</span>
+  </a>
+</nav>
+
+<!-- Floating WhatsApp Button -->
+<a class="fixed bottom-6 right-6 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl z-[100] hover:scale-110 active:scale-95 transition-all duration-300" href="https://wa.me/919876543210">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+</svg>
+</a>
+
+<script>
+        // Reveal Animations on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Initial call
+        reveal();
+
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Carousel Scroll Logic
+        const carousel = document.getElementById('featured-products-carousel');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        if (carousel && prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+        }
+    </script>
+
+<script>
+  // Highlight active page in navigation
+  (function() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+      }
+    });
+    document.querySelectorAll('.nav-bottom-item').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('text-primary', 'font-bold');
+      }
+    });
+
+    // Drawer toggle logic
+    const openDrawerBtn = document.getElementById('open-drawer-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer');
+    const drawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const content = document.getElementById('drawer-content');
+
+    if (openDrawerBtn && drawer && overlay && content && closeDrawerBtn) {
+      function toggleDrawer(open) {
+        if (open) {
+          drawer.classList.remove('pointer-events-none');
+          overlay.classList.add('opacity-100');
+          content.classList.remove('-translate-x-full');
+        } else {
+          drawer.classList.add('pointer-events-none');
+          overlay.classList.remove('opacity-100');
+          content.classList.add('-translate-x-full');
+        }
+      }
+
+      openDrawerBtn.addEventListener('click', () => toggleDrawer(true));
+      closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+      overlay.addEventListener('click', () => toggleDrawer(false));
+    }
+  })();
+
+  // File protocol check warning banner
+  if (window.location.protocol === 'file:') {
+    const banner = document.getElementById('origin-warning-banner');
+    if (banner) banner.classList.remove('hidden');
+  }
+</script>
+</body></html>

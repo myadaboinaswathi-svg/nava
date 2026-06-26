@@ -1,0 +1,8 @@
+-- Insert more demo data for products
+INSERT INTO nt_products (title, category, img, tag, desc_text) VALUES 
+('Guntur Red Chillies', 'Spices', 'https://images.unsplash.com/photo-1596662951362-b13c3b0dfb2f?auto=format&fit=crop&w=600&q=80', 'High Heat', 'Premium stemless red chillies from Guntur. Highly pungent, bright red color, perfect for export markets.'),
+('Yellow Maize (Corn)', 'Grains', 'https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=600&q=80', 'Animal Feed Grade', 'High-quality yellow maize suitable for poultry feed and industrial use. Mechanically dried and cleaned.'),
+('Malabar Black Pepper', 'Spices', 'https://images.unsplash.com/photo-1596645398246-8152e93bd609?auto=format&fit=crop&w=600&q=80', 'Asta Grade', 'Premium Malabar black pepper whole spices, double washed and sun-dried. High piperine content.'),
+('Toor Dal (Pigeon Peas)', 'Pulses', 'https://images.unsplash.com/photo-1515543582370-4cff31e54e8b?auto=format&fit=crop&w=600&q=80', 'Unpolished', 'Premium split pigeon peas. Sortex cleaned and completely unpolished to retain natural nutrients.'),
+('Soybean Seeds', 'Oil Seeds', 'https://images.unsplash.com/photo-1591465001582-fc98a3b1a83b?auto=format&fit=crop&w=600&q=80', 'High Oil Content', 'Non-GMO soybean seeds sourced from central India, ideal for oil extraction and meal production.'),
+('Nashik Red Onions', 'Vegetables', 'https://images.unsplash.com/photo-1618512496248-a07ce83aa8cb?auto=format&fit=crop&w=600&q=80', 'Export Quality', 'Fresh Nashik red onions, carefully sorted by size (45-55mm), packed in breathable mesh bags for extended shelf life.');
