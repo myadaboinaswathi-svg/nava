@@ -605,7 +605,24 @@
                                 <td class="p-4 font-semibold">${inq.quantity}</td>
                                 <td class="p-4 text-gray-500">${inq.location}</td>
                                 <td class="p-4 text-gray-500 max-w-xs truncate" title="${inq.message}">${inq.message || '-'}</td>
-                                <td class="p-4 text-[12px] text-gray-400">${dateStr}</td>
+                                <td class="p-4 text-[12px] text-gray-400 whitespace-nowrap">
+                                    <div>${dateStr}</div>
+                                    <div class="mt-1.5 flex items-center gap-1.5">
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                                            inq.status === 'Approved' ? 'bg-green-100 text-green-800' :
+                                            inq.status === 'Rejected' ? 'bg-red-100 text-red-800' :
+                                            'bg-amber-100 text-amber-800'
+                                        }">${inq.status || 'Pending'}</span>
+                                        ${(!inq.status || inq.status === 'Pending') ? `
+                                            <button onclick="updateStatus('buyer', ${inq.id}, 'Approved')" class="text-green-600 hover:text-green-800 p-0.5 rounded hover:bg-green-50 transition-colors flex items-center justify-center" title="Approve Deal">
+                                                <span class="material-symbols-outlined text-sm font-semibold">check_circle</span>
+                                            </button>
+                                            <button onclick="updateStatus('buyer', ${inq.id}, 'Rejected')" class="text-red-600 hover:text-red-800 p-0.5 rounded hover:bg-red-50 transition-colors flex items-center justify-center" title="Reject Deal">
+                                                <span class="material-symbols-outlined text-sm font-semibold">cancel</span>
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </td>
                                 <td class="p-4">
                                     <button onclick="deleteSubmission('buyer', ${inq.id})" class="text-red-500 hover:text-red-700 flex items-center justify-center p-1 rounded hover:bg-red-50 transition-colors">
                                         <span class="material-symbols-outlined text-lg">delete</span>
@@ -637,7 +654,24 @@
                                 <td class="p-4 font-semibold">${farm.quantity} MT</td>
                                 <td class="p-4 font-medium">${farm.price}</td>
                                 <td class="p-4 text-gray-500 max-w-[150px] truncate" title="${farm.notes}">${farm.notes || '-'}</td>
-                                <td class="p-4 text-[12px] text-gray-400">${dateStr}</td>
+                                <td class="p-4 text-[12px] text-gray-400 whitespace-nowrap">
+                                    <div>${dateStr}</div>
+                                    <div class="mt-1.5 flex items-center gap-1.5">
+                                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                                            farm.status === 'Approved' ? 'bg-green-100 text-green-800' :
+                                            farm.status === 'Rejected' ? 'bg-red-100 text-red-800' :
+                                            'bg-amber-100 text-amber-800'
+                                        }">${farm.status || 'Pending'}</span>
+                                        ${(!farm.status || farm.status === 'Pending') ? `
+                                            <button onclick="updateStatus('farmer', ${farm.id}, 'Approved')" class="text-green-600 hover:text-green-800 p-0.5 rounded hover:bg-green-50 transition-colors flex items-center justify-center" title="Approve Deal">
+                                                <span class="material-symbols-outlined text-sm font-semibold">check_circle</span>
+                                            </button>
+                                            <button onclick="updateStatus('farmer', ${farm.id}, 'Rejected')" class="text-red-600 hover:text-red-800 p-0.5 rounded hover:bg-red-50 transition-colors flex items-center justify-center" title="Reject Deal">
+                                                <span class="material-symbols-outlined text-sm font-semibold">cancel</span>
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </td>
                                 <td class="p-4">
                                     <button onclick="deleteSubmission('farmer', ${farm.id})" class="text-red-500 hover:text-red-700 flex items-center justify-center p-1 rounded hover:bg-red-50 transition-colors">
                                         <span class="material-symbols-outlined text-lg">delete</span>
@@ -684,6 +718,24 @@
             console.error("Error loading dashboard data from Supabase:", err);
         }
     }
+
+    // Update Lead Status Handler
+    window.updateStatus = async function(type, id, newStatus) {
+        if (!confirm(`Are you sure you want to mark this deal as ${newStatus}?`)) return;
+        const tableName = type === 'buyer' ? 'buyer_submissions' : 'farmer_submissions';
+        try {
+            const { error } = await db
+                .from(tableName)
+                .update({ status: newStatus })
+                .eq('id', id);
+            if (error) throw error;
+            alert(`Deal marked as ${newStatus}!`);
+            loadDashboardData();
+        } catch (err) {
+            console.error(`Failed to update status to ${newStatus} in Supabase`, err);
+            alert("Status update failed: " + err.message);
+        }
+    };
 
     // 4. Delete Leads Handlers
     window.deleteSubmission = async function(type, id) {
