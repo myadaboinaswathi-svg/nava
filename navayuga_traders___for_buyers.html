@@ -15,8 +15,8 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const supabaseUrl = "%VITE_SUPABASE_URL%";
-  const supabaseKey = "%VITE_SUPABASE_ANON_KEY%";
+  const supabaseUrl = `%VITE_SUPABASE_URL%`.trim();
+  const supabaseKey = `%VITE_SUPABASE_ANON_KEY%`.trim();
   window.supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
   console.log("Navayuga Traders Buyers Page - Supabase Client Init:", window.supabaseClient);
 </script>
